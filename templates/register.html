@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Cadastrar-se</h1>
+            <p>Crie uma conta para aproveitar nossos cupcakes incríveis!</p>
+            <form action="/register" method="POST">
+                <input type="text" name="new_username" placeholder="Usuário" required>
+                <input type="password" name="new_password" placeholder="Senha" required>
+                <input type="email" name="email" placeholder="E-mail" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+            <hr>
+            <a href="/" class="link">Já tem uma conta? Faça login.</a>
+        </div>
+    </div>
+</body>
+</html>

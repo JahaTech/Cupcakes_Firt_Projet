@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Perfil do Usuário</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart">Carrinho</a>
+            <a href="/order_history">Histórico de Pedidos</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Bem-vindo, {{ user.name }}</h2>
+            <p><strong>Usuário:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Telefone:</strong> {{ user.phone }}</p>
+            <a href="/order_history" class="btn">Ver Histórico de Pedidos</a>
+        </section>
+    </main>
+</body>
+</html>

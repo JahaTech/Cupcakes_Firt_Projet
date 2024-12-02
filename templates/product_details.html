@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Detalhes do Produto</h1>
+        <nav>
+            <a href="/home">Home</a>
+            <a href="/cart">Carrinho</a>
+            <a href="/profile">Perfil</a>
+        </nav>
+    </header>
+    <main>
+        <section class="product-details">
+            <div class="product-image">
+                <!-- Imagem do Cupcake -->
+                <div class="placeholder-image">Imagem do Produto</div>
+            </div>
+            <div class="product-info">
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <p class="price">Preço: R$ {{ "%.2f" | format(product.price) }}</p>
+                <form action="/add_to_cart" method="POST">
+                    <input type="hidden" name="product_name" value="{{ product.name }}">
+                    <input type="hidden" name="product_price" value="{{ product.price }}">
+                    <label for="quantity">Quantidade:</label>
+                    <input type="number" name="quantity" id="quantity" value="1" min="1">
+                    <button type="submit">Adicionar ao Carrinho</button>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

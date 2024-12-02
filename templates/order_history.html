@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Pedidos</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Histórico de Pedidos</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart">Carrinho</a>
+            <a href="/order_history">Histórico de Pedidos</a>
+            <a href="/reviews">Avaliações</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Seus Pedidos</h2>
+            {% if orders %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.order_date }}</td>
+                        <td>{{ order.customer_name }}</td>
+                        <td>R$ {{ "%.2f" | format(order.total) }}</td>
+                        <td>
+                            <a href="#" onclick="alert('Detalhes: {{ order }}')">Visualizar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>Você ainda não fez nenhum pedido.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

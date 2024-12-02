@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação do Pedido</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Pedido Confirmado</h1>
+    </header>
+    <main>
+        <section class="order-confirmation">
+            <h2>Obrigado pela sua compra, {{ order.customer_name }}!</h2>
+            <p>Seu pedido foi processado com sucesso. Os detalhes estão abaixo:</p>
+
+            <h3>Detalhes do Pedido</h3>
+            <p><strong>Endereço de Entrega:</strong> {{ order.address }}</p>
+            <p><strong>E-mail:</strong> {{ order.email }}</p>
+            <p><strong>Telefone:</strong> {{ order.phone }}</p>
+            <p><strong>Método de Pagamento:</strong> {{ order.payment_method }}</p>
+
+            <h3>Itens do Pedido</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.cart %}
+                    <tr>
+                        <td>{{ item.product_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>R$ {{ "%.2f" | format(item.product_price * item.quantity) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p><strong>Total:</strong> R$ {{ "%.2f" | format(order.total) }}</p>
+
+            <a href="/">Voltar à Página Inicial</a>
+            <a href="/order_history" class="btn">Ver Histórico de Pedidos</a>
+        </section>
+    </main>
+</body>
+</html>

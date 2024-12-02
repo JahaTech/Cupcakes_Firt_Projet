@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Finalizar Compra</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart">Carrinho</a>
+        </nav>
+    </header>
+    <main>
+        <section class="checkout">
+            <h2>Resumo do Pedido</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                    <tr>
+                        <td>{{ item.product_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>R$ {{ "%.2f" | format(item.product_price * item.quantity) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>Total: R$ {{ "%.2f" | format(total) }}</p>
+
+            <h2>Informações do Cliente</h2>
+            <form action="/checkout" method="POST">
+                <label for="customer_name">Nome Completo:</label>
+                <input type="text" id="customer_name" name="customer_name" required>
+
+                <label for="address">Endereço de Entrega:</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Telefone:</label>
+                <input type="text" id="phone" name="phone" required>
+
+                <h3>Método de Pagamento</h3>
+                <label>
+                    <input type="radio" name="payment_method" value="Cartão de Crédito" required>
+                    Cartão de Crédito
+                </label>
+                <label>
+                    <input type="radio" name="payment_method" value="Boleto" required>
+                    Boleto
+                </label>
+
+                <button type="submit">Finalizar Pedido</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

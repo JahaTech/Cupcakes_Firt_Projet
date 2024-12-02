@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliações de Produtos</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Avaliações de Produtos</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart">Carrinho</a>
+            <a href="/profile">Perfil</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Deixe sua Avaliação</h2>
+            <form method="POST" action="/reviews">
+                <label for="cupcake">Escolha o Cupcake:</label>
+                <select name="cupcake" id="cupcake" required>
+                    {% for cupcake in cupcakes %}
+                        <option value="{{ cupcake }}">{{ cupcake }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="rating">Nota (1 a 5):</label>
+                <input type="number" name="rating" id="rating" min="1" max="5" required>
+
+                <label for="comment">Comentário:</label>
+                <textarea name="comment" id="comment" rows="4" required></textarea>
+
+                <button type="submit">Enviar Avaliação</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Avaliações Recentes</h2>
+            {% if reviews %}
+                <ul>
+                    {% for review in reviews %}
+                        <li>
+                            <strong>{{ review.cupcake }}</strong> - Nota: {{ review.rating }}<br>
+                            <em>{{ review.comment }}</em> <br>
+                            <small>Por: {{ review.user }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Não há avaliações ainda. Seja o primeiro a avaliar!</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
